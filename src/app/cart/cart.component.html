@@ -1,0 +1,45 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Your <b>cart</b></h2>
+          </div>
+          <div class="col-sm-7">
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Unit price</th>
+          <th>Quantity</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let productCommand of productCommands; let i = index">
+          <td>{{i+1}}</td>
+          <td>
+            <button routerLink="/detail/{{productCommand.product.id}}">
+              <img src="{{productCommand.product.imageUrl}}" class="avatar" alt="Avatar">
+              <p>{{productCommand.product.name}}</p>
+            </button>
+          </td>
+          <td>${{productCommand.product.price}}</td>
+          <td>{{productCommand.quantity}}</td>
+          <td>
+            <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
+              (click)="removeFromCart(productCommand.product)">
+              Remove
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
