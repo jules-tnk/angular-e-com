@@ -1,12 +1,12 @@
 <div class="card h-100" *ngIf="product">
   <!-- Product image-->
-  <img class="card-img-top" src="{{product.imageUrl}}" alt="..."
+  <img class="card-img-top" src="{{product.image}}" alt="..."
     routerLink="/detail/{{product.id}}"/>
   <!-- Product details-->
   <div class="card-body p-4">
     <div class="text-center">
       <!-- Product name-->
-      <h5 class="fw-bolder">{{product.name}}</h5>
+      <h5 class="fw-bolder">{{product.title}}</h5>
       <!-- Product price-->
       ${{product.price}}
     </div>

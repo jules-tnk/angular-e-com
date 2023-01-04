@@ -1,12 +1,10 @@
 export interface Product {
   id: number;
-  name: string;
+  title: string;
   price: number;
   description: string;
-  imageUrl: string
-
-  isAvailable: boolean;
-
-  displayColor: string;
-  numberInStock: number;
+  category: string;
+  image: string
 }
+/*
+"rating":{"rate":3.9,"count":120}}*/
