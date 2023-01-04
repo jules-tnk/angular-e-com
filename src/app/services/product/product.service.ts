@@ -7,43 +7,16 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ProductService {
+  baseUrl:string = "https://fakestoreapi.com";
 
-  productUrl:string = "https://ea443d7b-1fb8-4f78-a686-5018afdf99d5.mock.pstmn.io";
 
   products: Product[] = [];
 
   constructor(private http: HttpClient) {
-    for (let i = 0; i < 4; i++) {
-      this.products?.push({
-        id: i+1,
-        name: "product "+ String(i),
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\n" +
-          "molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum\n",
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSw_pH5GgRI5BYMpp6ztlbV3qUhiPYeLFrLg&usqp=CAU",
-        isAvailable: true,
-        displayColor: "red",
-        price: 100*(i+1),
-        numberInStock: i
-      })
-    }
-
-    for (let i =4 ; i <8 ; i++) {
-      this.products?.push({
-        id: i+1,
-        name: "product " + String(i),
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\n" +
-          "molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum\n",
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSw_pH5GgRI5BYMpp6ztlbV3qUhiPYeLFrLg&usqp=CAU",
-        isAvailable: false,
-        displayColor: "green",
-        price: 100*(i+1),
-        numberInStock: i
-      })
-    }
   }
 
   getProduct(id: number): Observable<Product> {
-    let fullUrl: string = this.productUrl + `/${id}`;
+    let fullUrl: string = this.baseUrl + `/products/${id}`;
     return this.http.get<Product>(fullUrl)
       .pipe(
         catchError(this.handleError<Product>("getProductById"))
@@ -58,7 +31,7 @@ export class ProductService {
   }
 
   getAllProducts(): Observable<Product[]> {
-    let fullUrl: string = this.productUrl + "/product"
+    let fullUrl: string = this.baseUrl + "/products"
     return this.http.get<Product[]>(fullUrl)
       .pipe(
         catchError(this.handleError<Product[]>("getProducts", []))
